@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +21,7 @@ import static com.example.lab4_android.R.id.listView;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList <String> target;
-    private ArrayAdapter adapter;
+    private SimpleCursorAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,19 @@ public class MainActivity extends AppCompatActivity {
         String [] values = new String[] {"Pies", "Kot", "Karp", "Osioł", "Chomik", "Mysz", "Jeż", "Karaluch"};
         this.target=new ArrayList<String>();
         this.target.addAll(Arrays.asList(values));
-        this.adapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1, this.target);
+
+        MySQLite db = new MySQLite(this);
+        this.adapter = new SimpleCursorAdapter(
+                this,
+                android.R.layout.simple_list_item_2,
+                db.lista(),
+                new String[]{"_id", "gatunek"},
+                new int[]{android.R.id.text1,
+                        android.R.id.text2},
+
+                SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE
+        );
+
         ListView listView =(ListView) findViewById(R.id.listView);
         listView.setAdapter(this.adapter);
 
