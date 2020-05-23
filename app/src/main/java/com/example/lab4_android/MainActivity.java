@@ -34,5 +34,33 @@ public class MainActivity extends AppCompatActivity {
         listView.setAdapter(this.adapter);
 
     }
-    // To do....
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    public void nowyWpis(MenuItem menuItem) {
+        Intent intencja = new Intent(this, DodajWpis.class);
+        startActivityForResult(intencja, 1);
+    }
+
+    @Override
+    public void onActivityResult(int request_code, int resultCode, Intent data) {
+        super.onActivityResult(request_code, resultCode, data);
+        if (request_code == 1 && resultCode == RESULT_OK) {
+            Bundle extras = data.getExtras();
+            String nowy = (String) extras.get("wpis");
+            target.add(nowy);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
 }

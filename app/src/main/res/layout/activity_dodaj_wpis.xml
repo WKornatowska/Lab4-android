@@ -16,7 +16,7 @@
         tools:layout_editor_absoluteX="307dp"
         tools:layout_editor_absoluteY="652dp" />
 
-    <PlainText
+    <EditText
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

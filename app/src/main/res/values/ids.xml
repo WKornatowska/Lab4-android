@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="listView" type="id" />
+    <item name="kolor" type="id" />
+    <item name="wielkosc" type="id" />
+    <item name="opis" type="id" />
+    <item name="gatunek" type="id" />
+</resources>
